@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ürün Detay</title>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="./myProject.css" rel="stylesheet" />
+  
+
+</head>
+
+<body>
+  <!-- Navbar Code -->
+  <my-header></my-header>
+  <!-- Navbar Code End-->
+  
+  <div class="container border-1 border border-light">
+    Bilgisayar> Dizüstü bilgisayarlar> Asus> Lenovo IdeaPad
+  </div>
+  <div class="container my-2 border-1 ">
+    <div class="row ">
+      <div class="col-md-6 my-2 ">
+        <!-- Slide Code -->
+        <div id="carouselExampleControlsNoTouching" class="carousel slide" data-bs-touch="true" data-bs-interval="true">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img id="image" src="" class="d-block w-100" alt="...">
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControlsNoTouching"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControlsNoTouching"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+        <!-- Slide Code End-->
+      </div>
+      <div class="col-md-6 my-2 bg-light">
+        <div class="container">
+          <h4 id="title" ></h4>
+          <span id="brand"></span>
+        </div>
+        <hr>
+        <div class="container">
+          <span class="fs-1" id="unitPrice"> </span><span class="fs-4">TL</span>
+          <div>
+            <a href="#" class="stretched-link text-dark">Taksit Seçeneklerini inceleyebilirisiniz...</a>
+          </div>
+        </div>
+        <div class="container">
+          <button type="button" class="btn btn-primary  my-3 fs-4">Sepete Ekle</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container ">
+      <div class="row mt-1 row-cols gy-5">
+        <div class="col">
+          <ul class="nav nav-tabs" id="mytab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button type="button" class="nav-link active" id="tabProductDetail" data-bs-toggle="tab"
+                data-bs-target="#productDetail" role="tab" aria-controls="productDetail" aria-selected="true">Ürün
+                Özellikleri
+              </button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button type="button" class="nav-link" id="tabComment" data-bs-toggle="tab" data-bs-target="#comment"
+                role="tab" aria-controls="comment" aria-selected="false">Yorumlar</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button type="button" class="nav-link" id="tabPaymentMethods" data-bs-toggle="tab"
+                data-bs-target="#paymentMethods" role="tab" aria-controls="paymentMethods" aria-selected="true">Ödeme &
+                Taksit Seçenekleri</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button type="button" class="nav-link" id="tabQuestionAnswer" data-bs-toggle="tab"
+                data-bs-target="#questionanswer" role="tab" aria-controls="questionanswer" aria-selected="false">Soru
+                Cevap</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button type="button" class="nav-link" id="tabReturnConditions" data-bs-toggle="tab"
+                data-bs-target="#returnConditions" role="tab" aria-controls="returnConditions" aria-selected="true">İade
+                Koşulları</button>
+            </li>
+          </ul>
+          <div class="tab-content mt-4">
+            <div class="tab-pane fade show active" id="productDetail" role="tabpanel" aria-labelledby="paymentMethods">
+              <h5 class="display-9"> Lenovo IdeaPad Intel Celeron N4020 4GB 128GB SSD Freedos 14" HD Taşınabilir
+                Bilgisayar 81VU006STX</h3>
+                <p class="p-1">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum perspiciatis aut dolorem, illum saepe
+                  minus similique illo sunt commodi hic id laboriosam molestiae! Commodi ab saepe ad quaerat atque non.
+                </p>
+            </div>
+            <div class="tab-pane fade show " id="comment" role="tabpanel" aria-labelledby="tabComment">
+              <h3 class="display-6"> Ürün Yorumarı </h3>
+              <p>Yorum alanı
+              </p>
+            </div>
+
+            <div class="tab-pane fade show " id="paymentMethods" role="tabpanel" aria-labelledby="tabPaymentMethods">
+              <div style="height: 40px; width: 320px;">
+                <p class="text-center">A Bankası</p>
+              </div>
+              <div class=" border-1 border border-light" style="height:auto; width: 320px;">
+                <table class="table table-striped table-hover" id="installmentTable">
+                  <thead>
+                    <tr>
+                      <th>Taksit</th>
+                      <th>Taksit Tutarı</th>
+                      <th>Toplam Tutar</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="tab-pane fade show " id="questionanswer" role="tabpanel" aria-labelledby="tabQuestionanswer">
+              <h3 class="display-6"> Soru Cevap</h3>
+              <p>Soru Alanı
+              </p>
+            </div>
+            <div class="tab-pane fade show " id="returnConditions" role="tabpanel"
+              aria-labelledby="tabReturnConditions">
+              <h3 class="display-6"> İade alanı</h3>
+              <p>Ödeme tablosu
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <a href="#" class="btn btn-success" id="pageTop">Sayfa başına dön</a>
+      <!-- Footer code-->
+      <my-footer></my-footer>
+      <!-- Footer code-->
+      
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+      <script src="./js/constant.js"></script>
+      <script src="./js/navigation.js"></script>
+      <script src="./js/product.js"></script>
+      <script src="./js/main.js"></script>
+      <script>
+        
+       </script>
+</body>
+</html>

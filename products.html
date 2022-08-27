@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="./css/adminHomePage.css" rel="stylesheet" />
+  <title>Ürünler</title>
+</head>
+
+<body>
+
+  <admin-header></admin-header>
+
+  <div class="container-fluid">
+    <div class="row">
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+        <admin-navbar></admin-navbar>
+      </nav>
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">Ürünler Listesi</h1>
+          <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="btn-group me-2">
+              <button type="button" class="btn btn-sm btn-outline-secondary">Paylaş</button>
+              <button type="button" class="btn btn-sm btn-outline-secondary">Dışa Aktar</button>
+            </div>
+            <button id="" type="button" class="btn btn-sm btn-outline-primary" data-bs-toggle="modal"
+              data-bs-target="#addNewProduct">Ürün Ekle</button>
+            <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addNewProduct">
+                Ürün Ekle
+            </button> -->
+          </div>
+        </div>
+        <table class="table table-bordered border-primary" id="productsTable">
+          <thead>
+            <tr>
+              <th>Ürün</th>
+              <th>Kategorisi</th>
+              <th>Marka</th>
+              <th>Stok</th>
+              <th>Fiyat</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+      </main>
+      
+    </div>
+  </div>
+
+
+  <div class="container">
+    <!-- Footer code-->
+    <my-footer></my-footer>
+    <!-- Footer code-->
+  </div>
+  <!-- Ürün Kayıt Modal -->
+  <div class="modal fade" id="addNewProduct" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Yeni Ürün Ekle</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="" id="addNewProductForm">
+            <div class="mt-1">
+              <label class="my-1" for="productName" class="form-label">Ürün Adı</label>
+              <input maxlength="250" minlength="15" type="text" class="form-control" id="productName" name="productName"
+                autofocus required />
+            </div>
+            <div class="row">
+              <div class=" mt-1 col-6">
+                <label class="my-1 " for="productBrand" class="form-label ">Marka</label>
+                <input maxlength="15" minlength="3" type="text" class="form-control" id="productBrand"
+                  name="productBrand" required />
+              </div>
+              <div class=" mt-1 col-6 ">
+                <label class="my-1" for="productStock" class="form-label">Stok</label>
+                <input type="number" class="form-control" id="productStock" name="productStock" required />
+              </div>
+            </div>
+            <div class="row">
+              <div class=" mt-1 col-6 ">
+                <label class="my-1" for="productUnitPrice" class="form-label">Fiyat</label>
+                <input  type="number" class="form-control" id="productUnitPrice" name="productUnitPrice" required />
+              </div>
+
+              <div class="col-6">
+                <label class="my-1" for="image1" class="form-label">Ürün Resmi</label>
+                <input type="file" class="form-control" id="image1" name="image1" accept="image/jpeg" />
+              </div>
+            </div>
+            
+              <label class="mt-1" for="categoryId" class="form-label">Ürün Kategorisi</label>
+              <select class="form-select" id="categoryId" name="categoryId">
+                <option value="0">Kategori Seçiniz</option>
+              </select>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-bs-dismiss="modal">İptal Et</button>
+          <input value="Ürünü Ekle" type="button" id="newProductAdd" class="btn btn-outline-success"
+            form="addNewProductForm" />
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+  <script src="./js/constant.js"></script>
+  <script src="./js/navigation.js"></script>
+  <script>
+
+
+    $.ajax({
+      method: "GET",
+      dataType: "json",
+      url: `${API_URL}Product`,
+      //url:"http://localhost:5166/api/Product",
+      data: "",
+      success: function (data) {
+        products(data);
+      }
+    });
+    function products(product) {
+
+      for (var i = 0; i < product.length; i++) {
+        var tableRef = document
+          .getElementById("productsTable")
+          .getElementsByTagName("tbody")[0];
+
+        var productName = document.createTextNode(product[i].productName);
+        var unitPrice = document.createTextNode(product[i].unitPrice);
+        var stock = document.createTextNode(product[i].stock);
+        var brand = document.createTextNode(product[i].brand);
+        var categoryName = document.createTextNode(product[i].categoryName);
+
+        var newRow = tableRef.insertRow();
+        newRow.insertCell().appendChild(productName);
+        newRow.insertCell().appendChild(categoryName);
+        newRow.insertCell().appendChild(brand);
+        newRow.insertCell().appendChild(stock);
+        newRow.insertCell().appendChild(unitPrice);
+      }
+    }
+  </script>
+  
+<script> 
+  $("#newProductAdd").on("click",function(event){
+    $.ajax({
+      method:"POST",
+      contentType: "application/json",
+      url :"http://localhost:5166/api/Product",
+      data:JSON.stringify({
+        "productName":$.trim($("input[name='productName']").val()),
+        "brand":$.trim($("input[name='productBrand']").val()),
+        "stock":$.trim($("input[name='productStock']").val()),
+        "unitPrice":$.trim($("input[name='productUnitPrice']").val()),
+        "image1":$.trim($("input[name='image1']").val()),
+        "categoryId":$("#categoryId").val()
+      }),
+      success: function () {
+        alert("Kayıt Başarılı");
+        window.location="http://127.0.0.1:5501/products.html"
+      }
+    })
+  });
+  </script>
+  <script>
+    $.ajax({
+  dataType: "json",
+  url: `http://localhost:5166/api/Categories`,
+  data: "",
+  success: function (categoriesData) {
+    getcategories(categoriesData);
+  }
+});
+function getcategories(categoriesData) {
+  $(document).ready(function () {
+    $.each(categoriesData, function (index, value) {
+      $('#categoryId').append($('<option>', {
+        value: value.id,
+        text: value.categoryName
+      }));
+    });
+  });
+};
+  </script>
+</body>
+</html>
