@@ -2,7 +2,6 @@ $.ajax({
     method: "GET",
     dataType: "json",
     url: `${API_URL}Product`,
-    //url:"http://localhost:5166/api/Product",
     data: "",
     success: function (data) {
         products(data);
@@ -15,6 +14,7 @@ function products(product) {
             .getElementById("productsTable")
             .getElementsByTagName("tbody")[0];
 
+        var id = document.createTextNode(product[i].id);
         var productName = document.createTextNode(product[i].productName);
         var unitPrice = document.createTextNode(product[i].unitPrice);
         var stock = document.createTextNode(product[i].stock);
@@ -22,6 +22,7 @@ function products(product) {
         var categoryName = document.createTextNode(product[i].categoryName);
 
         var newRow = tableRef.insertRow();
+        newRow.insertCell().appendChild(id);
         newRow.insertCell().appendChild(productName);
         newRow.insertCell().appendChild(categoryName);
         newRow.insertCell().appendChild(brand);
@@ -30,7 +31,7 @@ function products(product) {
     }
 }
 
-$("#newProductAdd").on("click", function (event) {
+$("#newProductAdd").on("click", function () {
     $.ajax({
         method: "POST",
         contentType: "application/json",

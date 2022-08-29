@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="./myProject.css" rel="stylesheet" />
+  <title>Ana Sayfa</title>
+</head>
+
+<body>
+
+  <!-- Navbar Code -->
+  <my-header></my-header>
+  <!-- Navbar Code End-->
+  <button type="button"
+  class="btn btn-outline-success" data-bs-toggle="modal" data-bs-target="#signinModal">Giriş
+  Yap</button>
+  <div class="modal fade" tabindex="-1" id="signinModal">
+    <div class="modal-dialog modal-dialog-centered" aria-hidden="true" data-bs-backdrop="static">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="fw-bold mb-0">Giriş Yap</h2><button type="button" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Kapat"></button>
+            </div>
+            <div class="modal-body">
+            <form class="">
+            <div class="form-floating mb-3"><input type="email" class="form-control rounded-3"
+                    id="userMail" placeholder="name@example.com"><label for="userMail">Mail
+                    Adresi</label></div>
+            <div class="form-floating mb-3"><input type="password" class="form-control rounded-3" id="userPassword" placeholder="Password"><label for="userPassword">Şifre</label></div>
+            <button id="login" class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="button">Giriş</button>
+            <a href="#">Şifremi Unuttum</a>
+        </form>
+            </div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
+
+
+  <!-- Product Start-->
+  <div>
+    <div class="album py-5 bg-light">
+      <div class="container">
+        <div id="addProduct" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Product End-->
+
+
+
+  <a href="#" class="btn btn-success" id="pageTop">Sayfa başına dön</a>
+
+
+
+  <!-- Footer code-->
+  <my-footer></my-footer>
+  <!-- Footer code-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"></script>
+  <script src="./js/constant.js"></script>
+  <script>$('#login').click(function () {
+
+    var mail = $("#userMail").val();
+    var password = $("#userPassword").val();
+    $.ajax({
+      method: "POST",
+      contentType: "application/json",
+      url: `${API_URL}User/login`,
+      data: JSON.stringify({
+        "email":mail,
+        "password":password
+      }),
+      success: function (data) {
+        if (data == null) {
+          
+          alert("Hatalı Mail adresi veya Parola");
+        }
+        else {
+          alert(data.email + " Giriş Başarılı Hoşgeldiniz");
+          window.location='userHomePage.html'
+        }
+      }
+    });
+  });</script>
+</body>
+
+</html>

@@ -1,5 +1,5 @@
 //product add
-// db.json dosyasından ürünleri çekip index.html ve category.html ürünleri yazdırıyor.
+//  ürünleri çekip index.html ve category.html ürünleri yazdırıyor.
 // Ürün resminde hat var id eklendi
 $.ajax({
   dataType: "json",
@@ -7,7 +7,7 @@ $.ajax({
   data: "",
   success: function (data) {
     for (var i = 0; i < data.length; i++) {
-      var $div = $("<div class='col'><div class='card shadow-sm'><img id='image' src='" + data[i].image1 + "' style='width: auto; height: auto' alt='asus' /><div class='card-body'><p class='card-text' id='cardtitle'>" + data[i].productName + "</p><div class='d-flex justify-content-between align-items-center'><a href='product.html?id=" + data[i].id + "' style='height: 50px; width: 100%'><button type='button'class='btn btn-sm btn-outline-primary justify-content-end'style='height: 50px; width: 100%'>Sepete Ekle</button></a></div></div></div></div>");
+      var $div = $("<div class='col'><div class='card shadow-sm'><img id='image' src='" + data[i].image1 + "' style='width: auto; height: auto' alt='asus' /><div class='card-body'><p class='card-text' id='cardtitle'>" + data[i].productName + "</p><div class='d-flex justify-content-between align-items-center'><a href='productDetail.html?id=" + data[i].id + "' style='height: 50px; width: 100%'><button type='button'class='btn btn-sm btn-outline-primary justify-content-end'style='height: 50px; width: 100%'>Sepete Ekle</button></a></div></div></div></div>");
       $("#addProduct").append($div);
     }
   }
@@ -80,7 +80,7 @@ $('#login').click(function () {
   $.ajax({
     method: "POST",
     contentType: "application/json",
-    url: `http://localhost:5166/api/User/login`,
+    url: `${API_URL}User/login`,
     data: JSON.stringify({
       "email":mail,
       "password":password
