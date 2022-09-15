@@ -99,8 +99,14 @@ class MyHeader extends HTMLElement {
                   </a>\
                 </li>\
                 <li class="nav-item">\
-                  <a class="nav-link" href="./customer.html">\
+                  <a class="nav-link" href="./user.html">\
                     <span data-feather="shopping-cart" class="align-text-bottom"></span>\
+                    Kullanıcılar\
+                  </a>\
+                </li>\
+                <li class="nav-item">\
+                  <a class="nav-link" href="./customer.html">\
+                    <span data-feather="users" class="align-text-bottom"></span>\
                     Müşteriler\
                   </a>\
                 </li>\

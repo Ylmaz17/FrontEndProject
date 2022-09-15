@@ -49,8 +49,8 @@ $("#register").on("click", function (event) {
   $.ajax({
     method: "POST",
     contentType: "application/json",
-    url: `${API_URL}User/register`,
-    //url: "http://localhost:5166/api/User",
+    url: `${API_URL}Customer/register`,
+    //url :http://localhost:5166/api/Customer/register,
     data: JSON.stringify
       ({
         "name": $.trim($("input[name='userName']").val()),
@@ -62,7 +62,7 @@ $("#register").on("click", function (event) {
         "profilImage": $.trim($("input[name='userPhoto']").val()),
         "cityId": $.trim($("#cityId").val()),
         "districtId": $.trim($("#districtId").val()),
-        "addressText": $.trim($("input[name='addressText']").val())
+        "addressText": $.trim($("input[name='addressText']").val()),
 
       }),
     success: function () {

@@ -1,15 +1,22 @@
 $.ajax({
     method: "GET",
     dataType: "json",
-    url: `${API_URL}Product`,
+    url: `${API_URL}Product/categorynamegetall`,
+    //url :'http://localhost:5166/api/Product/categorynamegetall',
     data: "",
     success: function (data) {
-        products(data);
+        if(!data.success){
+          alert(data.message)
+          return;
+        }
+        products(data.data);
+
     }
 });
 function products(product) {
-
+    
     for (var i = 0; i < product.length; i++) {
+        console.log(product[i]);
         var tableRef = document
             .getElementById("productsTable")
             .getElementsByTagName("tbody")[0];
@@ -35,7 +42,7 @@ $("#newProductAdd").on("click", function () {
     $.ajax({
         method: "POST",
         contentType: "application/json",
-        url: `${API_URL}Product`,
+        url: `${API_URL}Product/add`,
         data: JSON.stringify({
             "productName": $.trim($("input[name='productName']").val()),
             "brand": $.trim($("input[name='productBrand']").val()),
@@ -68,3 +75,33 @@ function getcategories(categoriesData) {
         });
     });
 };
+
+  // Register Form Button Disabled
+
+  $(".filed input").on("keyup", function () {
+    let empty = false;
+    $(".filed input").each(function () {
+      empty = $(this).val().length == 0;
+    });
+
+    if (empty) {
+      $(".actions input").attr("disabled", "disabled");
+    } else {
+      $(".actions input").attr("disabled", false);
+    }
+
+    // $("#userPasswordAgain").on('keyup', function () {
+    //   var userPassword = $("#userPassword").val();
+    //   var userPasswordAgain = $("#userPasswordAgain").val();
+
+
+    //   if (userPassword != userPasswordAgain) {
+    //     $(".actions input").attr("disabled", "disabled");
+    //     $("#validationPasswordAgain").html("Şifreler Eşleşmiyor").css("color", "red");
+    //   }
+    //   else {
+    //     $("#validationPasswordAgain").html("");
+    //     $(".actions input").attr("disabled", false);
+    //   }
+    // });
+  });

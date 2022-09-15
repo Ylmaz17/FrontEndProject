@@ -36,7 +36,7 @@
             <tr>
               <th>Adı</th>
               <th>Email Adresi</th>
-              <th>Telefon</th>
+              <th>Yetkisi</th>
             </tr>
           </thead>
           <tbody>
@@ -45,14 +45,11 @@
       </main>
     </div>
   </div>
-
-
   <div class="container">
     <!-- Footer code-->
     <my-footer></my-footer>
     <!-- Footer code-->
   </div>
-  <!-- Ürün Kayıt Modal -->
 
 
 
@@ -67,37 +64,36 @@
   <script src="./js/main.js"></script>
   <script src="./js/navigation.js"></script>
   <script>
-   
+
 
     $.ajax({
-     method:"GET",
-      dataType: "json", 
-      
-      //url: `${API_URL}Customer`,
-      url:"http://localhost:5166/api/Customer/getall",
+      method: "GET",
+      dataType: "json",
+      //url:"http://localhost:5166/api/User/userdetailsandgetroles",
+      url: `${API_URL}User/userdetailsandgetroles`,
       data: "",
-     success: function (data) {
-       users(data.data);
+      success: function (data) {
+        users(data.data);
       }
     });
     function users(user) {
-   
+
       for (var i = 0; i < user.length; i++) {
         var tableRef = document
           .getElementById("usersTable")
           .getElementsByTagName("tbody")[0];
-          
+
         var name = document.createTextNode(user[i].name + " " + user[i].surname);
         var email = document.createTextNode(user[i].email);
-        var phone = document.createTextNode(user[i].phone);
-   
+        var rolName = document.createTextNode(user[i].rolName);
+
         var newRow = tableRef.insertRow();
         newRow.insertCell().appendChild(name);
         newRow.insertCell().appendChild(email);
-        newRow.insertCell().appendChild(phone);
+        newRow.insertCell().appendChild(rolName);
       }
     }
-   </script>
+  </script>
 </body>
 
 </html>
